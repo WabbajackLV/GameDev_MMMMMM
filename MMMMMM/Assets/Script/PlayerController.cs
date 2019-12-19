@@ -23,6 +23,15 @@ public class PlayerController : MonoBehaviour
 		rigBody.velocity = new Vector2(velX * moveSpeed, velY);
     }
 	
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.gameObject.CompareTag("Coins"))
+		{
+			Destroy(other.gameObject);
+		}
+	}
+	
+	
 	void LateUpdate()
 	{
 		Vector3 localScale = transform.localScale;
