@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
 	float velY;
 	bool facingRight = true;
 	Rigidbody2D rigBody;
-	Vector3 originalPos;
+	int level = 1;
+	GameObject cam;
     // Start is called before the first frame update
     void Start()
     {
         rigBody = GetComponent<Rigidbody2D>();
-		originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-
+		cam = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
 		if(other.gameObject.CompareTag("Spikes"))
 		{
 			SceneManager.LoadScene(0);
+		}
+		if(other.gameObject.CompareTag("NextLevel"))
+		{
+			cam.transform.position = cam.transform.position + new Vector3(7,0,0);
+			Destroy(other.gameObject);
 		}
 	}
 	
