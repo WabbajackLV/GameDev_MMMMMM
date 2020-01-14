@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,10 +10,13 @@ public class PlayerController : MonoBehaviour
 	float velY;
 	bool facingRight = true;
 	Rigidbody2D rigBody;
+	Vector3 originalPos;
     // Start is called before the first frame update
     void Start()
     {
         rigBody = GetComponent<Rigidbody2D>();
+		originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+
     }
 
     // Update is called once per frame
@@ -28,6 +32,10 @@ public class PlayerController : MonoBehaviour
 		if(other.gameObject.CompareTag("Coins"))
 		{
 			Destroy(other.gameObject);
+		}
+		if(other.gameObject.CompareTag("Spikes"))
+		{
+			SceneManager.LoadScene(0);
 		}
 	}
 	
