@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-	public float moveSpeed = 3f;
+	public float moveSpeed = 5f;
 	float velX;
 	float velY;
 	bool facingRight = true;
 	Rigidbody2D rigBody;
 	int level = 1;
 	GameObject cam;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
 		if(other.gameObject.CompareTag("Coins"))
 		{
 			Destroy(other.gameObject);
+			Scores.scoreAmount++;
 		}
 		if(other.gameObject.CompareTag("Spikes"))
 		{
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if(other.gameObject.CompareTag("NextLevel"))
 		{
-			cam.transform.position = cam.transform.position + new Vector3(7,0,0);
+			cam.transform.position = cam.transform.position + new Vector3(7.37f,0,0);
 			Destroy(other.gameObject);
 		}
 	}
