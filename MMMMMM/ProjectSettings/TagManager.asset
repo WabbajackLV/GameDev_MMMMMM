@@ -7,6 +7,10 @@ TagManager:
   - Coins
   - Spikes
   - NextLevel
+  - NextLevelToRight
+  - NextLevelUpwards
+  - NextLevelDownwards
+  - Tiles
   layers:
   - Default
   - TransparentFX

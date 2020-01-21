@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class PlayerController : MonoBehaviour
 	float velY;
 	bool facingRight = true;
 	Rigidbody2D rigBody;
-	int level = 1;
 	GameObject cam;
 	
     // Start is called before the first frame update
@@ -33,19 +33,28 @@ public class PlayerController : MonoBehaviour
 		if(other.gameObject.CompareTag("Coins"))
 		{
 			Destroy(other.gameObject);
-			Scores.scoreAmount++;
 		}
 		if(other.gameObject.CompareTag("Spikes"))
 		{
 			SceneManager.LoadScene(0);
 		}
-		if(other.gameObject.CompareTag("NextLevel"))
+		if(other.gameObject.CompareTag("NextLevelToRight"))
 		{
-			cam.transform.position = cam.transform.position + new Vector3(7.37f,0,0);
+			cam.transform.position = cam.transform.position + new Vector3(7.666667f,0,0);
 			Destroy(other.gameObject);
 		}
+		if(other.gameObject.CompareTag("NextLevelUpwards"))
+		{
+			cam.transform.position = cam.transform.position + new Vector3(0,11f,0);
+			Destroy(other.gameObject);
+		}
+		if(other.gameObject.CompareTag("NextLevelDownwards"))
+		{
+			cam.transform.position = cam.transform.position + new Vector3(0,-11f,0);
+			Destroy(other.gameObject);
+		}
+
 	}
-	
 	
 	void LateUpdate()
 	{
@@ -62,4 +71,6 @@ public class PlayerController : MonoBehaviour
 		transform.localScale = localScale;
 		
 	}
+	
+	
 }

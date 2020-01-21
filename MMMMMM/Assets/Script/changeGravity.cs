@@ -6,16 +6,20 @@ public class changeGravity : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private bool top;
+	public float timer;
 	
 	void Start(){
 		rb = GetComponent<Rigidbody2D>();
 	}
 	
 	void Update(){
-	if(Input.GetKeyDown(KeyCode.Space)){
+		timer += Time.deltaTime;
+		if(Input.GetKeyDown(KeyCode.Space) && timer > 0.4f)
+		{
 		rb.gravityScale *= -1;
 		Rotation();
-	}
+		timer = 0;
+		}
 	}
 	
 	void Rotation(){
