@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	bool facingRight = true;
 	Rigidbody2D rigBody;
 	GameObject cam;
+	Vector3 checkpoint;
 	
     // Start is called before the first frame update
     void Start()
@@ -36,21 +37,26 @@ public class PlayerController : MonoBehaviour
 		}
 		if(other.gameObject.CompareTag("Spikes"))
 		{
-			SceneManager.LoadScene(0);
+			this.transform.position = checkpoint;
+			rigBody.gravityScale = 3;
+			//SceneManager.LoadScene(0);
 		}
 		if(other.gameObject.CompareTag("NextLevelToRight"))
 		{
 			cam.transform.position = cam.transform.position + new Vector3(7.666667f,0,0);
+			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 		}
 		if(other.gameObject.CompareTag("NextLevelUpwards"))
 		{
 			cam.transform.position = cam.transform.position + new Vector3(0,11f,0);
+			checkpoint = this.transform.position + new Vector3(2,3,0);
 			Destroy(other.gameObject);
 		}
 		if(other.gameObject.CompareTag("NextLevelDownwards"))
 		{
 			cam.transform.position = cam.transform.position + new Vector3(0,-11f,0);
+			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 		}
 

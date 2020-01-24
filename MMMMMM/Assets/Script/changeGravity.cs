@@ -14,7 +14,7 @@ public class changeGravity : MonoBehaviour
 	
 	void Update(){
 		timer += Time.deltaTime;
-		if(Input.GetKeyDown(KeyCode.Space) && timer > 0.4f)
+		if(Input.GetKeyDown(KeyCode.Space) && timer > 0.7f)
 		{
 		rb.gravityScale *= -1;
 		Rotation();
