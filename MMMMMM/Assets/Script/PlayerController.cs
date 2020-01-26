@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 		victory3.GetComponent<Text>().enabled = false;
 		victory4 = GameObject.Find("HMCoinVictoryText");
 		victory4.GetComponent<Text>().enabled = false;
+		Screen.SetResolution(1920, 1080, true);
     }
 
     // Update is called once per frame
@@ -78,31 +79,31 @@ public class PlayerController : MonoBehaviour
 		if(other.gameObject.CompareTag("NextLevelToRight"))
 		{
 			Destroy(hardmode);
-			cam.transform.position = new Vector3(21,0,-1);
+			cam.transform.position = new Vector3(19.2f,0,-1);
 			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 		}
 		if(other.gameObject.CompareTag("NextLevelToRight2"))
 		{
-			cam.transform.position = new Vector3(44,0,-1);
+			cam.transform.position = new Vector3(38.4f,0,-1);
 			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 		}
 		if(other.gameObject.CompareTag("NextLevelUpwards"))
 		{
-			cam.transform.position = new Vector3(44,11,-1);
+			cam.transform.position = new Vector3(38.4f,10.8f,-1);
 			checkpoint = this.transform.position + new Vector3(2,3,0);
 			Destroy(other.gameObject);
 		}
 			if(other.gameObject.CompareTag("NextLevelToRight3"))
 		{
-			cam.transform.position = new Vector3(67,11,-1);
+			cam.transform.position = new Vector3(57.6f,10.8f,-1);
 			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 		}
 		if(other.gameObject.CompareTag("NextLevelDownwards"))
 		{
-			cam.transform.position = new Vector3(69,0,-1);
+			cam.transform.position = new Vector3(58,0,-1);
 			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 			victory1.GetComponent<Text>().enabled = true;
