@@ -5,12 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour 
 {
 	public float moveSpeed = 5f;
 	public Text hardmode;
 	GameObject victory1;
 	GameObject victory2;
+	GameObject victory3;
+	GameObject victory4;
 	float velX;
 	float velY;
 	bool facingRight = true;
@@ -18,6 +20,10 @@ public class PlayerController : MonoBehaviour
 	Rigidbody2D rigBody;
 	GameObject cam;
 	Vector3 checkpoint;
+	Scores score;
+
+
+
 	
     // Start is called before the first frame update
     void Start()
@@ -25,10 +31,15 @@ public class PlayerController : MonoBehaviour
         rigBody = GetComponent<Rigidbody2D>();
 		cam = GameObject.Find("Main Camera");
 		checkpoint = this.transform.position;
+		score = FindObjectOfType<Scores>();
 		victory1 = GameObject.Find("VictoryText1");
 		victory1.GetComponent<Text>().enabled = false;
 		victory2 = GameObject.Find("VictoryText2");
 		victory2.GetComponent<Text>().enabled = false;
+		victory3 = GameObject.Find("HMVictoryText");
+		victory3.GetComponent<Text>().enabled = false;
+		victory4 = GameObject.Find("HMCoinVictoryText");
+		victory4.GetComponent<Text>().enabled = false;
     }
 
     // Update is called once per frame
@@ -67,23 +78,43 @@ public class PlayerController : MonoBehaviour
 		if(other.gameObject.CompareTag("NextLevelToRight"))
 		{
 			Destroy(hardmode);
-			cam.transform.position = cam.transform.position + new Vector3(7.666667f,0,0);
+			cam.transform.position = new Vector3(21,0,-1);
+			checkpoint = this.transform.position;
+			Destroy(other.gameObject);
+		}
+		if(other.gameObject.CompareTag("NextLevelToRight2"))
+		{
+			cam.transform.position = new Vector3(44,0,-1);
 			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 		}
 		if(other.gameObject.CompareTag("NextLevelUpwards"))
 		{
-			cam.transform.position = cam.transform.position + new Vector3(0,11f,0);
+			cam.transform.position = new Vector3(44,11,-1);
 			checkpoint = this.transform.position + new Vector3(2,3,0);
+			Destroy(other.gameObject);
+		}
+			if(other.gameObject.CompareTag("NextLevelToRight3"))
+		{
+			cam.transform.position = new Vector3(67,11,-1);
+			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 		}
 		if(other.gameObject.CompareTag("NextLevelDownwards"))
 		{
-			cam.transform.position = cam.transform.position + new Vector3(0,-11f,0);
+			cam.transform.position = new Vector3(69,0,-1);
 			checkpoint = this.transform.position;
 			Destroy(other.gameObject);
 			victory1.GetComponent<Text>().enabled = true;
 			victory2.GetComponent<Text>().enabled = true;
+			if(hm)
+			{
+				victory3.GetComponent<Text>().enabled = true;
+				if(score.coinWin())
+				{
+					victory4.GetComponent<Text>().enabled = true;
+				}
+			}
 		}
 		if(other.gameObject.CompareTag("PlayAgain"))
 		{

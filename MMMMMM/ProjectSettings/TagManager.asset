@@ -11,6 +11,10 @@ TagManager:
   - NextLevelUpwards
   - NextLevelDownwards
   - Tiles
+  - Coin_Hardmode
+  - PlayAgain
+  - NextLevelToRight2
+  - NextLevelToRight3
   layers:
   - Default
   - TransparentFX
